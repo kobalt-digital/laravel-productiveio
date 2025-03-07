@@ -1,24 +1,26 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "kobalt/laravel-productiveio",
+    "description": "Laravel wrapper for the Productive.io API",
     "keywords": [
-        ":vendor_name",
+        "Kobalt",
         "laravel",
-        ":package_slug"
+        "laravel-productiveio"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/kobaltdigital/laravel-productiveio",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Arne van Hoorn",
+            "email": "arne@kobaltdigital.nl",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.4",
-        "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.8",
+        "illuminate/contracts": "^10.0||^11.0",
+        "spatie/laravel-collection-macros": "^7.14",
+        "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -35,13 +37,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Kobalt\\LaravelProductiveio\\": "src/",
+            "Kobalt\\LaravelProductiveio\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Kobalt\\LaravelProductiveio\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +65,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Kobalt\\LaravelProductiveio\\LaravelProductiveioServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelProductiveio": "Kobalt\\LaravelProductiveio\\Facades\\LaravelProductiveio"
             }
         }
     },
