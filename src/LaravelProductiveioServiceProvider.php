@@ -4,8 +4,6 @@ namespace Kobalt\LaravelProductiveio;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Spatie\CollectionMacros\CollectionMacroServiceProvider;
-use Kobalt\LaravelProductiveio\Commands\LaravelProductiveioCommand;
 
 class LaravelProductiveioServiceProvider extends PackageServiceProvider
 {

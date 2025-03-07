@@ -5,7 +5,9 @@ namespace Kobalt\LaravelProductiveio\Resources;
 abstract class Resource
 {
     protected $client;
+
     protected $resourceType;
+
     protected $endpoint;
 
     public function __construct($client)
@@ -48,8 +50,8 @@ abstract class Resource
         return $this->client->request()->post($this->endpoint, [
             'data' => [
                 'type' => $this->resourceType,
-                'attributes' => $data
-            ]
+                'attributes' => $data,
+            ],
         ])->json();
     }
 
@@ -59,8 +61,8 @@ abstract class Resource
             'data' => [
                 'type' => $this->resourceType,
                 'id' => $id,
-                'attributes' => $data
-            ]
+                'attributes' => $data,
+            ],
         ])->json();
     }
 

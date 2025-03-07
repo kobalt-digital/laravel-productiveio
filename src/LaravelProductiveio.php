@@ -3,23 +3,28 @@
 namespace Kobalt\LaravelProductiveio;
 
 use Illuminate\Support\Facades\Http;
-use Kobalt\LaravelProductiveio\Resources\People;
-use Kobalt\LaravelProductiveio\Resources\Contacts;
-use Kobalt\LaravelProductiveio\Resources\Projects;
 use Kobalt\LaravelProductiveio\Resources\Companies;
+use Kobalt\LaravelProductiveio\Resources\Contacts;
+use Kobalt\LaravelProductiveio\Resources\People;
+use Kobalt\LaravelProductiveio\Resources\Projects;
 
 class LaravelProductiveio
 {
     protected $apiToken;
+
     protected $organizationId;
+
     protected $baseUrl = 'https://api.productive.io/api/v2';
 
     protected $companies;
+
     protected $contacts;
+
     protected $people;
+
     protected $projects;
 
-    public function __construct(string $apiToken = null, string $organizationId = null)
+    public function __construct(?string $apiToken = null, ?string $organizationId = null)
     {
         $this->apiToken = $apiToken ?? config('productiveio.api_token');
         $this->organizationId = $organizationId ?? config('productiveio.organization_id');

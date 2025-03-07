@@ -5,6 +5,7 @@ namespace Kobalt\LaravelProductiveio\Resources;
 class People extends Resource
 {
     protected $resourceType = 'people';
+
     protected $endpoint = '/people';
 
     public function invite(array $data)
@@ -12,8 +13,8 @@ class People extends Resource
         return $this->client->request()->post("{$this->endpoint}/invite", [
             'data' => [
                 'type' => $this->resourceType,
-                'attributes' => $data
-            ]
+                'attributes' => $data,
+            ],
         ])->json();
     }
 
@@ -22,8 +23,8 @@ class People extends Resource
         return $this->client->request()->post("{$this->endpoint}/{$id}/reinvite", [
             'data' => [
                 'type' => $this->resourceType,
-                'id' => $id
-            ]
+                'id' => $id,
+            ],
         ])->json();
     }
 
@@ -32,8 +33,8 @@ class People extends Resource
         return $this->client->request()->patch("{$this->endpoint}/{$id}/deactivate", [
             'data' => [
                 'type' => $this->resourceType,
-                'id' => $id
-            ]
+                'id' => $id,
+            ],
         ])->json();
     }
 }
