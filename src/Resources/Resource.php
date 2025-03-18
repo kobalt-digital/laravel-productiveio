@@ -5,10 +5,9 @@ namespace Kobalt\LaravelProductiveio\Resources;
 abstract class Resource
 {
     protected $client;
-
     protected $resourceType;
-
     protected $endpoint;
+    protected $includes = [];
 
     public function __construct($client)
     {
@@ -32,6 +31,10 @@ abstract class Resource
             }
         }
 
+        if (!empty($this->includes)) {
+            $queryParams['include'] = implode(',', $this->includes);
+        }
+
         $response = $this->client->request()
             ->withQueryParameters($queryParams)
             ->get($this->endpoint)
@@ -42,7 +45,18 @@ abstract class Resource
 
     public function find(string $id)
     {
-        return $this->client->request()->get("{$this->endpoint}/{$id}")->json();
+        $queryParams = [];
+
+        if (!empty($this->includes)) {
+            $queryParams['include'] = implode(',', $this->includes);
+        }
+
+        $response = $this->client->request()
+            ->withQueryParameters($queryParams)
+            ->get("{$this->endpoint}/{$id}")
+            ->json();
+
+        return collect($response['data'])->recursive();
     }
 
     public function create(array $data)
@@ -69,5 +83,11 @@ abstract class Resource
     public function delete(string $id)
     {
         return $this->client->request()->delete("{$this->endpoint}/{$id}")->json();
+    }
+
+    public function include(array $includes)
+    {
+        $this->includes = $includes;
+        return $this;
     }
 }
