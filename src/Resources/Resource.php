@@ -5,8 +5,11 @@ namespace Kobalt\LaravelProductiveio\Resources;
 abstract class Resource
 {
     protected $client;
+
     protected $resourceType;
+
     protected $endpoint;
+
     protected $includes = [];
 
     public function __construct($client)
@@ -31,7 +34,7 @@ abstract class Resource
             }
         }
 
-        if (!empty($this->includes)) {
+        if (! empty($this->includes)) {
             $queryParams['include'] = implode(',', $this->includes);
         }
 
@@ -47,7 +50,7 @@ abstract class Resource
     {
         $queryParams = [];
 
-        if (!empty($this->includes)) {
+        if (! empty($this->includes)) {
             $queryParams['include'] = implode(',', $this->includes);
         }
 
@@ -88,6 +91,7 @@ abstract class Resource
     public function include(array $includes)
     {
         $this->includes = $includes;
+
         return $this;
     }
 }
