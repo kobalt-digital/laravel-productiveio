@@ -29,6 +29,10 @@ class LaravelProductiveio
         $this->apiToken = $apiToken ?? config('productiveio.api_token');
         $this->organizationId = $organizationId ?? config('productiveio.organization_id');
 
+        if (empty($this->apiToken) || empty($this->organizationId)) {
+            throw new \InvalidArgumentException('Productive API token and organization ID are required.');
+        }
+
         $this->companies = new Companies($this);
         $this->contacts = new Contacts($this);
         $this->people = new People($this);
