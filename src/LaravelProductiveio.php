@@ -3,11 +3,11 @@
 namespace Kobalt\LaravelProductiveio;
 
 use Illuminate\Support\Facades\Http;
-use Kobalt\LaravelProductiveio\Resources\Roles;
-use Kobalt\LaravelProductiveio\Resources\People;
-use Kobalt\LaravelProductiveio\Resources\Contacts;
-use Kobalt\LaravelProductiveio\Resources\Projects;
 use Kobalt\LaravelProductiveio\Resources\Companies;
+use Kobalt\LaravelProductiveio\Resources\Contacts;
+use Kobalt\LaravelProductiveio\Resources\People;
+use Kobalt\LaravelProductiveio\Resources\Projects;
+use Kobalt\LaravelProductiveio\Resources\Roles;
 
 class LaravelProductiveio
 {
