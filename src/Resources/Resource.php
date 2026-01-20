@@ -17,12 +17,12 @@ abstract class Resource
         $this->client = $client;
     }
 
-    public function all()
+    public function all(?int $page = null, ?int $pageSize = null)
     {
-        return $this->filter();
+        return $this->filter([], $page, $pageSize);
     }
 
-    public function filter(array $filters = [])
+    public function filter(array $filters = [], ?int $page = null, ?int $pageSize = null)
     {
         $queryParams = [];
 
@@ -34,6 +34,14 @@ abstract class Resource
             }
         }
 
+        if ($page !== null) {
+            $queryParams['page[number]'] = $page;
+        }
+
+        if ($pageSize !== null) {
+            $queryParams['page[size]'] = $pageSize;
+        }
+
         if (! empty($this->includes)) {
             $queryParams['include'] = implode(',', $this->includes);
         }
@@ -43,7 +51,10 @@ abstract class Resource
             ->get($this->endpoint)
             ->json();
 
-        return collect($response['data'])->recursive();
+        return [
+            'data' => collect($response['data'] ?? [])->recursive(),
+            'meta' => $response['meta'] ?? [],
+        ];
     }
 
     public function find(string $id)

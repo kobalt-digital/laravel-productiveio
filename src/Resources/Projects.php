@@ -7,4 +7,6 @@ class Projects extends Resource
     protected $resourceType = 'projects';
 
     protected $endpoint = '/projects';
+
+    protected $includes = ['company', 'deal'];
 }
